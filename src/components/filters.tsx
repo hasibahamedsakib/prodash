@@ -29,28 +29,30 @@ const Filters = () => {
         className="max-w-sm"
         onChange={(e) => dispatch(setSearchTerm(e.target.value))}
       />
-      <Select onValueChange={(value) => dispatch(setCategoryFilter(value))}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select category" />
-        </SelectTrigger>
-        <SelectContent>
-          {categories.map((category) => (
-            <SelectItem key={category} value={category}>
-              {category}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <div className="flex items-center justify-between sm:gap-4">
+        <Select onValueChange={(value) => dispatch(setCategoryFilter(value))}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select category" />
+          </SelectTrigger>
+          <SelectContent>
+            {categories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <Select onValueChange={(value: any) => dispatch(setSortOrder(value))}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Sort by price" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="asc">Low to High</SelectItem>
-          <SelectItem value="desc">High to Low</SelectItem>
-        </SelectContent>
-      </Select>
+        <Select onValueChange={(value: any) => dispatch(setSortOrder(value))}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Sort by price" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="asc">Low to High</SelectItem>
+            <SelectItem value="desc">High to Low</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 };

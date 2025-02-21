@@ -112,7 +112,10 @@ const Home = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Product Management</h1>
+        <h1 className="text-md sm:text-xl md:text-2xl xl:text-3xl font-bold">
+          Welcome to <span className="text-purple-600">Pro</span>
+          <span className="text-chart-2 md:text-md xl:text-xl">Dash</span>
+        </h1>
         <div className="flex gap-4">
           <Button
             variant="outline"

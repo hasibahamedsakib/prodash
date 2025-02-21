@@ -37,6 +37,7 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
       name: "",
       price: 0,
       imageUrl: "",
+      description: "",
       category: "",
       status: "active",
     },
@@ -117,6 +118,22 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
               <FormLabel>Image URL</FormLabel>
               <FormControl>
                 <Input required type="url" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="description"
+          rules={{
+            required: "Description is required",
+          }}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Input required type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
