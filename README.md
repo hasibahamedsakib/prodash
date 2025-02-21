@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProDash - Product Management Dashboard
 
-## Getting Started
+A modern, responsive product management dashboard built with Next.js, TypeScript, Redux, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
+
+- **CRUD Operations**: Create, Read, Update, and Delete products
+- **Search & Filter**: Dynamic search and category-based filtering
+- **Sort**: Price-based sorting (low to high, high to low)
+- **Responsive Design**: Mobile-first approach
+- **Dark Mode**: Toggle between light and dark themes
+- **Local Storage**: Persistent data storage
+
+## 🛠️ Tech Stack
+
+- Next.js 14 (App Router)
+- TypeScript
+- Redux Toolkit
+- Tailwind CSS
+- Shadcn UI
+- Lucide Icons
+
+## ⚡ Performance Optimizations
+
+### Code Splitting
+
+- Dynamic imports for components using `next/dynamic`
+- Lazy loading for heavy components:
+  - ProductForm
+  - ProductCard
+  - Filters
+
+### Component Optimization
+
+- Memoization using `React.memo` for:
+  - ProductCard
+  - Filters
+  - ProductForm
+- State management optimization using Redux selectors
+
+### Loading States
+
+- Skeleton loading screens
+- Smooth transitions
+- Optimized images using Next.js Image component
+
+## 🚀 Quick Start
+
+1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/hasibahamedsakib/prodash.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Run development server
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+yarn dev
+```

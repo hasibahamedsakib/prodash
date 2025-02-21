@@ -17,7 +17,7 @@ import { Moon, Sun } from "lucide-react";
 import { selectFilteredProducts } from "@/store/selectors/productSelectors";
 import LoadingSkeleton from "@/components/ui/loading-skeleton";
 // implement code splitting
-const ProductCard = dynamic(() => import("@/components/product-card"), {
+const ProductCard = dynamic(() => import("@/components/ProductCard"), {
   ssr: false,
   loading: () => <p>ProductCard Loading...</p>,
 });
@@ -27,7 +27,7 @@ const Filters = dynamic(() => import("@/components/filters"), {
   // loading: () => <p>Filters Loading...</p>,
 });
 
-const ProductForm = dynamic(() => import("@/components/product-form"), {
+const ProductForm = dynamic(() => import("@/components/ProductForm"), {
   ssr: false,
   loading: () => <p>ProductForm Loading...</p>,
 });
