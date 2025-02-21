@@ -21,6 +21,7 @@ import {
 import { IProduct } from "@/types/product";
 import { useDispatch } from "react-redux";
 import { addProduct, updateProduct } from "@/store/features/productSlice";
+import { memo } from "react";
 
 interface ProductFormProps {
   product?: IProduct;
@@ -29,7 +30,7 @@ interface ProductFormProps {
 
 const categories = ["Electronics", "Clothing", "Books", "Food", "Other"];
 
-export function ProductForm({ product, onClose }: ProductFormProps) {
+const ProductForm = ({ product, onClose }: ProductFormProps) => {
   const dispatch = useDispatch();
   const form = useForm<Omit<IProduct, "id" | "isFavorite" | "createdAt">>({
     defaultValues: product || {
@@ -39,6 +40,7 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
       category: "",
       status: "active",
     },
+    mode: "onBlur",
   });
 
   const onSubmit = (
@@ -55,7 +57,7 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
       dispatch(
         addProduct({
           ...data,
-          id: Date.now().toString(),
+          id: Date.now().toString().slice(-5),
           isFavorite: false,
           createdAt: new Date().toISOString(),
         })
@@ -74,7 +76,7 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input required {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,7 +89,7 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
             <FormItem>
               <FormLabel>Price</FormLabel>
               <FormControl>
-                <Input type="number" {...field} />
+                <Input required type="number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,7 +102,7 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
             <FormItem>
               <FormLabel>Image URL</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input required type="url" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -115,7 +117,10 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a category" />
+                    <SelectValue
+                      aria-required
+                      placeholder="Select a category"
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -139,7 +144,7 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select status" />
+                    <SelectValue aria-required placeholder="Select status" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -162,4 +167,6 @@ export function ProductForm({ product, onClose }: ProductFormProps) {
       </form>
     </Form>
   );
-}
+};
+
+export default memo(ProductForm);

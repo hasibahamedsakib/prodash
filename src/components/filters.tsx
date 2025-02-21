@@ -15,10 +15,11 @@ import {
   setCategoryFilter,
   setSortOrder,
 } from "@/store/features/productSlice";
+import { memo } from "react";
 
 const categories = ["All", "Electronics", "Clothing", "Books", "Food", "Other"];
 
-export function Filters() {
+const Filters = () => {
   const dispatch = useDispatch();
 
   return (
@@ -46,10 +47,12 @@ export function Filters() {
           <SelectValue placeholder="Sort by price" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="asc">Price: Low to High</SelectItem>
-          <SelectItem value="desc">Price: High to Low</SelectItem>
+          <SelectItem value="asc">Low to High</SelectItem>
+          <SelectItem value="desc">High to Low</SelectItem>
         </SelectContent>
       </Select>
     </div>
   );
-}
+};
+
+export default memo(Filters);

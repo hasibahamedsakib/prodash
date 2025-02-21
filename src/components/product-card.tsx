@@ -7,18 +7,18 @@ import { Heart, Pencil, Trash } from "lucide-react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { deleteProduct, toggleFavorite } from "@/store/features/productSlice";
+import { memo } from "react";
 
 interface ProductCardProps {
   product: IProduct;
   onEdit: (product: IProduct) => void;
 }
-
-export function ProductCard({ product, onEdit }: ProductCardProps) {
+const ProductCard = ({ product, onEdit }: ProductCardProps) => {
   const dispatch = useDispatch();
-
+  console.log(product);
   return (
     <Card className="overflow-hidden">
-      <div className="relative h-48">
+      <div className="relative h-52">
         <Image
           src={product.imageUrl}
           alt={product.name}
@@ -26,14 +26,21 @@ export function ProductCard({ product, onEdit }: ProductCardProps) {
           className="object-cover"
         />
       </div>
-      <CardContent className="p-4">
+      <CardContent className="pt-4 px-4">
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-semibold text-lg">{product.name}</h3>
-            <p className="text-sm text-muted-foreground">${product.price}</p>
-            <span className="text-xs bg-secondary px-2 py-1 rounded-full">
-              {product.category}
-            </span>
+            <h3 className="font-semibold text-lg leading-6 capitalize">
+              {product.name}
+            </h3>
+            <div className="flex items-center justify-between w-full">
+              <p className="text-xs text-muted-foreground">Ref {product.id}</p>
+              <p className="text-xs bg-secondary px-2 py-1 rounded-full ml-3">
+                {product.category}
+              </p>
+            </div>
+            <h3 className="font-semibold text-lg leading-6 hover:text-chart-1">
+              ${product.price}
+            </h3>
           </div>
           <Button
             variant="ghost"
@@ -41,7 +48,9 @@ export function ProductCard({ product, onEdit }: ProductCardProps) {
             onClick={() => dispatch(toggleFavorite(product.id))}
           >
             <Heart
-              className={product.isFavorite ? "fill-red-500 text-red-500" : ""}
+              className={`w-10 h-10 ${
+                product.isFavorite ? "fill-red-500 text-red-500" : ""
+              }`}
             />
           </Button>
         </div>
@@ -62,4 +71,5 @@ export function ProductCard({ product, onEdit }: ProductCardProps) {
       </CardFooter>
     </Card>
   );
-}
+};
+export default memo(ProductCard);
