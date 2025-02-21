@@ -72,6 +72,13 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
         <FormField
           control={form.control}
           name="name"
+          rules={{
+            required: "Product name is required",
+            minLength: {
+              value: 5,
+              message: "Name must be at least 5 characters",
+            },
+          }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
@@ -85,11 +92,15 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
         <FormField
           control={form.control}
           name="price"
+          rules={{
+            required: "Price is required",
+            min: { value: 1, message: "Price must be greater than 0" },
+          }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Price</FormLabel>
               <FormControl>
-                <Input required type="number" {...field} />
+                <Input type="number" {...field} value={field.value ?? 0} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -98,6 +109,9 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
         <FormField
           control={form.control}
           name="imageUrl"
+          rules={{
+            required: "Image URL is required",
+          }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Image URL</FormLabel>
@@ -111,16 +125,14 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
         <FormField
           control={form.control}
           name="category"
+          rules={{ required: "Category is required" }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue
-                      aria-required
-                      placeholder="Select a category"
-                    />
+                    <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -138,13 +150,14 @@ const ProductForm = ({ product, onClose }: ProductFormProps) => {
         <FormField
           control={form.control}
           name="status"
+          // rules={{ required: "Category is required" }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Status</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue aria-required placeholder="Select status" />
+                    <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
